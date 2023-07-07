@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .a {
+        color: red;
+      }
+      .b {
+        color: green;
+      }
+      .c {
+        color: blue;
+      }
+
+      .a:has(.c) {
+        color: orange;
+      }
+      .c:is(.c) {
+        color: brown;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="a">
+      a
+      <div class="c">c</div>
+    </div>
+    <div class="b">b</div>
+    <div class="a">a</div>
+  </body>
+</html>
+
+<!-- 
+
+  has：一般选择器只能往子选择器、往后面的兄弟选择器选择，这个正好相反，选择到子、后面的兄弟后，样式给has外面的选择器，这种选择器，也称为“父亲选择器”
+
+  where和is：单纯的把多个选择器组合起来，而且可以选自己。不同的是，is有权重，where没有。
+
+  not：逻辑not
+
+
+  区分：where和is就是个队列，它可以把选择器组合；has和普通选择器互补，普通选择器从外往内，从上往下选，has选的是相反的方向；not是把选出来的取反
+
+  经典题：.wrapper:not(:has(:not(img))什么意思？
+  答案：选中了里面只有img的.wrapper
+  解析：从内往外看，:not(img)选中不是img的元素，:has(:not(img))选中的是内部元素没有img的元素，:not(:has(:not(img)))选中的是内部元素全是img的元素，这个元素就是.wrapper
+
+ -->
